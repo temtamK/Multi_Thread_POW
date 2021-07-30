@@ -19,8 +19,11 @@ typedef struct		s_block
 	struct s_block	*next;
 }					t_block;
 
-BYTE		*ft_itoa_base(unsigned long long int n, char *base);
+// block.c
 void		Genesis_block(t_block *block);
+
+// utils.c
+BYTE		*ft_itoa_base(unsigned long long int n, char *base);
 uint32_t	ft_atoi(unsigned char *s);
 char		*ft_substr(unsigned char const *s, unsigned int start, size_t len);
 uint32_t	ft_strtoui(unsigned char *hash);

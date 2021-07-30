@@ -1,5 +1,6 @@
 #include "block.h"
 
+// 문자열의 길이값을 구하는 함수
 size_t	ft_strlen(const unsigned char *s)
 {
 	size_t	i;
@@ -10,7 +11,7 @@ size_t	ft_strlen(const unsigned char *s)
 	return (i);
 }
 
-
+// 문자열을 복사하는 함수
 size_t	ft_strlcpy(char *dest, const unsigned char *src, size_t size)
 {
 	size_t	src_len;
@@ -33,6 +34,7 @@ size_t	ft_strlcpy(char *dest, const unsigned char *src, size_t size)
 	return (src_len);
 }
 
+// 문자열의 일부를 추출하는 함수
 char	*ft_substr(unsigned char const *s, unsigned int start, size_t len)
 {
 	char			*new;
@@ -49,6 +51,7 @@ char	*ft_substr(unsigned char const *s, unsigned int start, size_t len)
 	return (new);
 }
 
+// 어떤 진법인지에 따라 숫자 자릿수를 구하는 함수
 size_t		num_count_base(unsigned long long int n, char *base)
 {
 	size_t					len;
@@ -64,6 +67,7 @@ size_t		num_count_base(unsigned long long int n, char *base)
 	return (len);
 }
 
+// 어떤 진법인지에 따라 숫자를 문자열로 변환하는 함수
 BYTE		*ft_itoa_base(unsigned long long int n, char *base)
 {
 	BYTE		*str;
@@ -83,6 +87,7 @@ BYTE		*ft_itoa_base(unsigned long long int n, char *base)
 	return (str);
 }
 
+// 문자열로 되어 있는 해시값을 uint32 타입으로 변환하는 함수
 uint32_t	ft_strtoui(BYTE *hash)
 {
 	char div[4];

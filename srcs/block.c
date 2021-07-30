@@ -1,5 +1,6 @@
 #include "block.h"
 
+// 첫번째 블록(genesis block)은 미리 값을 정해놓았습니다.
 void	Genesis_block(t_block *block)
 {
 	block->version = 0;
