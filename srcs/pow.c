@@ -1,11 +1,10 @@
 #include "block.h"
 
-BYTE	*Get_target(uint32_t bits)
+void	Get_target(uint32_t bits, BYTE target[])
 {
 	int			i, count;
 	int 		exponent;
 	BYTE 		*coef;
-	static BYTE target[32] = {0, };
 
 	i = 0;
 	count = 0;
@@ -35,7 +34,6 @@ BYTE	*Get_target(uint32_t bits)
 		i++;
 		count++;
 	}
-	return (target);
 }
 
 BYTE	*Conv_sha256(BYTE *seed)
@@ -85,14 +83,15 @@ BYTE	*Get_hash(uint32_t nonce)
 void	Mining(t_block *block)
 {
 	t_block		nBlock;
-	BYTE		*target;
+	BYTE		target[32] = {0, };
 	BYTE		*hash;
+
 	int i;
 
 	i = 0;
 	nBlock = (t_block){0};
 	// 타겟 해시값을 구하는 함수입니다.
-	target = Get_target(block->bits);
+	Get_target(block->bits, target);
 	// 타겟보다 작은 해시값을 구하는 함수입니다.
 	hash = Get_hash(block->nonce);
 	printf("target = ");
@@ -136,7 +135,7 @@ int 	main()
 	while (num_block < 11)
 	{
 		start_time = time(0);
-		printf("block is %d\n", num_block);
+		printf("block is %d\n", block.nonce);
 		Mining(&block);
 		block.nonce++;
 		printf("block has been mining\n");
@@ -145,7 +144,8 @@ int 	main()
 		printf("time = %s\n", ctime(&block.time));
 		speding_time = end_time - start_time;
 		// 블록이 채굴되면 난이도가 변경됩니다.
-		block.bits = block.bits * (1 * speding_time + block.nonce);
+		block.bits = block.bits - ((speding_time + block.nonce * 24) / (block.nonce + 1));
+		printf("bits = %x\n", block.bits);
 		num_block++;
 		printf("\n");
 	}
