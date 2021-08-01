@@ -141,6 +141,8 @@ int 	main()
 		block.nonce++;
 		printf("block has been mining\n");
 		end_time = time(0);
+		block.time = end_time;
+		printf("time = %s\n", ctime(&block.time));
 		speding_time = end_time - start_time;
 		// 블록이 채굴되면 난이도가 변경됩니다.
 		block.bits = block.bits * (1 * speding_time + block.nonce);
